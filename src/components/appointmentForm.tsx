@@ -1,23 +1,36 @@
 import React from 'react';
 import { Form, FormGroup, Input, Button } from 'reactstrap'
 
+type State = {
+  client_name: string,
+  phone_number: string,
+  startDateTime: string,
+  note: string,
+}
 
 interface IAppointmentPage {
 
   client_name: string,
   phone_number: string,
-  startDateTime: Date,
+  startDateTime: string,
   note: string,
 }
 
-class AppointmentForm extends React.Component<IAppointmentPage> {
-  constructor(props:IAppointmentPage) {
+class AppointmentForm extends React.Component<IAppointmentPage, State> {
+  constructor(props: IAppointmentPage) {
     super(props);
-    this.state={client_name: "", phone_number: "", startDateTime: new Date(), note: ""};}
-  
+    this.state = {
+      client_name: this.props.client_name,
+      phone_number: this.props.phone_number,
+      startDateTime: this.props.startDateTime,
+      note: this.props.note,
+    }
+  };
+
 
 
   render() {
+    console.log(this.props.client_name);
     return (
       <div>
         <h1>Appointment Page</h1>
@@ -55,6 +68,7 @@ class AppointmentForm extends React.Component<IAppointmentPage> {
             />
           </FormGroup>
           <Button type="submit">Submit</Button>
+          <Button type="submit">Update</Button>
         </Form>
       </div>
     );
@@ -65,18 +79,9 @@ class AppointmentForm extends React.Component<IAppointmentPage> {
 
 
 
-export   default AppointmentForm;
+export default AppointmentForm;
 
 
-// export default function AppointmentForm () {
-  
-//     return (
-//       <div>
-//           <h1>Appointment</h1>
-        
-//       </div>
-//     );
-// }
 
-  
- 
+
+

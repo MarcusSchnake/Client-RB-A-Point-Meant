@@ -1,21 +1,32 @@
 import React from 'react';
+// import { type } from 'node:os';
 import { Form, FormGroup, Input, Button } from 'reactstrap'
+
+
+
+type State = {
+  subject: string,
+  todo_item: string,
+}
+
 
 interface ITodoFormProps {
   subject: string,
   todo_item: string,
 }
 
-class ITodoFormProps extends React.Component<ITodoFormProps> {
+class TodoFormProps extends React.Component<ITodoFormProps, State> {
   constructor(props: ITodoFormProps) {
     super(props);
-    this.state = { subject: "", todo_item: "" };
-  }
+    this.state = {
+      subject: this.props.subject,
+      todo_item: this.props.todo_item,
+    };
+  };
 
   render() {
     return (
       <div>
-        <h1>Todo</h1>
         <Form>
           <FormGroup>
             <Input
@@ -33,18 +44,12 @@ class ITodoFormProps extends React.Component<ITodoFormProps> {
               value={this.state.todo_item}
             />
           </FormGroup>
-          <Button type="submit">Submit</Button>
+          
         </Form>
       </div>
     );
   }
 }
 
-// export default function Todo () {
-//     return (
-//       <h1>
-//         ToDo's
-//       </h1>
-//     );
-// };
-export default ITodoFormProps;
+
+export default TodoFormProps;

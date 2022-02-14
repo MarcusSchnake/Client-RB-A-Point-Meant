@@ -4,7 +4,7 @@ import { Form, FormGroup, Input, Button } from "reactstrap";
 
 type Props = {
   update:(data:Object) => Function;
-  
+  endPoint?:string;
 };
 
 type State = {
@@ -26,7 +26,8 @@ class Login extends React.Component<Props, State> {
   handleSubmit = () => {
     console.log("login handle");
     console.log(this.state.email, this.state.password);
-    fetch("http://localhost:3000/user/login", {
+    const ep = this.props.endPoint || "login";
+    fetch(`http://localhost:3000/user/${ep}`, {
       method: "POST",
       body: JSON.stringify({
         users: {
@@ -42,7 +43,6 @@ class Login extends React.Component<Props, State> {
       .then((data) => {
         console.log(data);
         console.log(this.props.update);
-        // this.props.update(data.sessionToken);
         this.props.update(data);
       });
   };
@@ -51,7 +51,6 @@ class Login extends React.Component<Props, State> {
    
     return (
       <div>
-        <h3>Login</h3>
         <Form
           onSubmit={(e) => {
             e.preventDefault();
@@ -76,6 +75,7 @@ class Login extends React.Component<Props, State> {
             />
           </FormGroup>
           <Button type="submit">Login</Button>
+          <Button type="submit">Register</Button>
         </Form>
       </div>
     );
@@ -87,31 +87,3 @@ class Login extends React.Component<Props, State> {
 
 
 export default Login;
-
-
-
-//export{}
-// import React from 'react';
-
-
-// interface ILogin {
-//   email: string,
-//   password: string,
-// };
-
-// const LoginButton(props: ILogin) {
-//   onSubmit: (username: string, 
-//     password: string) => void;
-// };
-
-
-// export default function Login  () {
-//     return (
-//       <div>
-//           <h1>Login</h1>
-//           <LoginButton button onClick={() => {} }>Login</LoginButton>
-          
-        
-//       </div>
-//     );
-// };

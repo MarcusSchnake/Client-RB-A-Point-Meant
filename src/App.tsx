@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import Navbar from './components/NavbarForm';
 import LandingPage from './pages/LandingPage';
-import LoginForm from './components/LoginForm';
-import AppointmentForm from './components/AppointmentForm';
+import LoginPage from './pages/LoginPage';
+import AppointmentPage from "./components/AppointmentForm"
 import TodoPage from './pages/TodoPage';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
@@ -22,9 +23,9 @@ function App() {
     <div>
       <Navbar />
       <LandingPage />
-      <LoginForm update={(data: Object): Function => update(data)} />
-      <AppointmentForm />
-      <TodoPage />
+      <LoginPage email="" password="" />
+      <AppointmentPage client_name="" phone_number="" startDateTime="" note=""  />
+      <TodoPage subject="" todo_item=""/>
     </div>
   );
 }

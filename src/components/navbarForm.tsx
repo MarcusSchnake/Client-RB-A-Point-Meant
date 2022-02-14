@@ -1,25 +1,89 @@
 import React from 'react';
-import { Form, FormGroup, Input, Button } from 'reactstrap';
-import Navbar from './NavbarForm';
+import {  Navbar,Nav, NavItem,NavLink,Dropdown,DropdownToggle,DropdownMenu,DropdownItem, } from 'reactstrap';
 
 
-export default function NavbarSticky() {
-    
+
+
+export default function NavBar() {
+
     return (
-        <nav className="navbar">   {/* className is a keyword that is used to add a class to an element */}
-            <ul>
-                <li>
-                    <a href="/">Home</a>
-                </li>
-                <li>
-                    <a href="/about">About</a>
-                </li>
-                <li>
-                    <a href="/AppointmentPage">Appointment</a>  
-                </li>
-            </ul>
-        </nav>
-        
+        <div>
+            <Navbar color="blue"/>
+            <Nav pills>
+                <NavItem>
+                    <NavLink
+                        active
+                        href="#"
+                    >
+                        Link
+                    </NavLink>
+                </NavItem>
+                <Dropdown
+                    nav
+                    toggle={function noRefCheck() { }}
+                >
+                    <DropdownToggle
+                        caret
+                        nav
+                    >
+                        Dropdown
+                    </DropdownToggle>
+                    <DropdownMenu>
+                        <DropdownItem header>
+                            Header
+                        </DropdownItem>
+                        <DropdownItem disabled>
+                            Action
+                        </DropdownItem>
+                        <DropdownItem>
+                            Another Action
+                        </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem>
+                            Another Action
+                        </DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+                <NavItem>
+                    <NavLink href="#">
+                        Link
+                    </NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink href="#">
+                        Another Link
+                    </NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink
+                        disabled
+                        href="#"
+                    >
+                        Disabled Link
+                    </NavLink>
+                </NavItem>
+            </Nav>
+        </div>
+
+
+
+
+        // <nav className="navbar" >   {/* className is a keyword that is used to add a class to an element */}
+        //     <div className="container"> 
+        //     <ul>
+        //         <li>
+        //             <a href="/LandingPage">Home</a>
+        //         </li>
+        //         <li>
+        //             <a href="/TodoPage">Todo's</a>
+        //         </li>
+        //         <li>
+        //             <a href="/AppointmentPage">Appointment</a>  
+        //         </li>
+        //     </ul>
+        //     </div>
+        // </nav>
+
     );
-    
+
 };

@@ -3,7 +3,6 @@ import { Form, FormGroup, Input, Button } from 'reactstrap'
 
 
 
-
 export default function LandingPage() {
     return (
         <div>
