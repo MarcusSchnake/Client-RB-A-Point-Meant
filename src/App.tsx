@@ -1,7 +1,6 @@
 // require('dotenv').config();
 import { useState } from 'react';
 import Navbar from './components/NavbarForm';
-import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import AppointmentPage from "./pages/AppointmentPage"
 import TodoPage from './pages/TodoPage';
@@ -23,7 +22,7 @@ function App() {
   return (
     <div>
       <Navbar />
-      <LandingPage />
+      
       <LoginPage email="" password="" />
       <AppointmentPage client_name="" phone_number="" startDateTime="" note=""  />
       <TodoPage subject="" todo_item=""/>
