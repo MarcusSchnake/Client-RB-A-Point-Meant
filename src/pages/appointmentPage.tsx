@@ -18,7 +18,7 @@ interface IUpdateAppointmentProps {
 
 
 class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> {
-    constructor(props: any) {
+    constructor(props: IUpdateAppointmentProps) {
         super(props);
         this.state = {
             client_name: this.props.client_name,
@@ -27,10 +27,6 @@ class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> 
             note: this.props.note,
         };
     };
-
-
-
-
 
 
     handleSubmit = (event: any) => {
