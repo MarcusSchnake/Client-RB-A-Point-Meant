@@ -76,9 +76,6 @@ class AppointmentForm extends React.Component<IAppointmentPage, State> {
 }
 
 
-
-
-
 export default AppointmentForm;
 
 
