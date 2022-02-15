@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Navbar from './components/NavbarForm';
 import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
-import AppointmentPage from "./components/AppointmentForm"
+import AppointmentPage from "./pages/AppointmentPage"
 import TodoPage from './pages/TodoPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {  Navbar,Nav, NavItem,NavLink,Dropdown,DropdownToggle,DropdownMenu,DropdownItem, } from 'reactstrap';
-
+import {} from 'reactstrap';
 
 
 
@@ -64,11 +64,10 @@ export default function NavBar() {
                 </NavItem>
             </Nav>
         </div>
+    );
+};
 
-
-
-
-        // <nav className="navbar" >   {/* className is a keyword that is used to add a class to an element */}
+// <nav className="navbar" >   {/* className is a keyword that is used to add a class to an element */}
         //     <div className="container"> 
         //     <ul>
         //         <li>
@@ -83,7 +82,3 @@ export default function NavBar() {
         //     </ul>
         //     </div>
         // </nav>
-
-    );
-
-};
