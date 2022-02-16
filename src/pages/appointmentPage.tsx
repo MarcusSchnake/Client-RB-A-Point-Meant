@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, FormGroup, Input, Button } from 'reactstrap'
+import { Form, FormGroup, Input } from 'reactstrap'
 import AppointmentForm from '../components/AppointmentForm';
 
 type State = {
@@ -85,7 +85,7 @@ class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> 
     };
 
     DeleteAppointments = () => {
-        fetch('http://localhost:3000/appointments', {
+        fetch('http://localhost:3001/appointments', {
             method: 'DELETE',
             body: JSON.stringify({
                 appointments: {
@@ -111,7 +111,7 @@ class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> 
         return (
             <div>
                 <h1>Appointment Page</h1>
-                <AppointmentForm client_name="MadMarcus" phone_number="" startDateTime="" note="" />
+                <AppointmentForm client_name="" phone_number="" startDateTime="" note="" />
                 <Form>
                     <FormGroup>
                         <Input

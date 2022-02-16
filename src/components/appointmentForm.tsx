@@ -30,7 +30,7 @@ class AppointmentForm extends React.Component<IAppointmentPage, State> {
 
 
   render() {
-    console.log(this.props.client_name);
+    // console.log(this.props.client_name);
     return (
       <div>
         <h1>Appointment Page</h1>

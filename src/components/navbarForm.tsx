@@ -1,7 +1,5 @@
 import React from 'react';
 import {  Navbar,Nav, NavItem,NavLink,Dropdown,DropdownToggle,DropdownMenu,DropdownItem, } from 'reactstrap';
-import {} from 'reactstrap';
-
 
 
 export default function NavBar() {
@@ -67,18 +65,3 @@ export default function NavBar() {
     );
 };
 
-// <nav className="navbar" >   {/* className is a keyword that is used to add a class to an element */}
-        //     <div className="container"> 
-        //     <ul>
-        //         <li>
-        //             <a href="/LandingPage">Home</a>
-        //         </li>
-        //         <li>
-        //             <a href="/TodoPage">Todo's</a>
-        //         </li>
-        //         <li>
-        //             <a href="/AppointmentPage">Appointment</a>  
-        //         </li>
-        //     </ul>
-        //     </div>
-        // </nav>
