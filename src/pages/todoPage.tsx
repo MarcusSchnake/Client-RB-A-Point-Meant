@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, FormGroup, Input, Button } from 'reactstrap'
-import TodoForm from '../components/TodoForm';
+import TodoForm from '../components/todoForm';
 
 type State = {
   subject: string,

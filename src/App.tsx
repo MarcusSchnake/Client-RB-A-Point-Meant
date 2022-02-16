@@ -1,9 +1,9 @@
 // require('dotenv').config();
 import { useState } from 'react';
-import Navbar from './components/NavbarForm';
+import Navbar from './components/navbarForm';
 import LoginPage from './pages/LoginPage';
-import AppointmentPage from './pages/AppointmentPage'
-import TodoPage from './pages/TodoPage';
+import AppointmentPage from './pages/appointmentPage'
+import TodoPage from './pages/todoPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 

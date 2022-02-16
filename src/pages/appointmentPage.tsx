@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, FormGroup, Input } from 'reactstrap'
-import AppointmentForm from '../components/AppointmentForm';
+import AppointmentForm from '../components/appointmentForm';
 
 type State = {
     client_name: string,
