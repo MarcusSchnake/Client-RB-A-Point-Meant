@@ -73,9 +73,28 @@ class Login extends React.Component<Props, State> {
               onChange={(e) => this.setState({ password: e.target.value })}
               value={this.state.password}
             />
+            <Button type="submit">Login</Button>
           </FormGroup>
-          <Button type="submit">Login</Button>
-          <Button type="submit">Register</Button>
+          <FormGroup floating>
+            <Input
+              type="text"
+              placeholder="Email"
+              onChange={(e) => this.setState({ email: e.target.value })}
+              value={this.state.email}
+            />
+          </FormGroup>
+
+          <FormGroup floating>
+            <Input
+              type="password"
+              placeholder="Password"
+              onChange={(e) => this.setState({ password: e.target.value })}
+              value={this.state.password}
+            />
+            <Button type="submit">Register</Button>
+          </FormGroup>
+           <Button type="submit">Login</Button> 
+          <Button type="submit">Register</Button> 
         </Form>
       </div>
     );

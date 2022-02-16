@@ -110,7 +110,7 @@ class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> 
     render() {
         return (
             <div>
-                <h1>Appointment Page</h1>
+                {/* <h1>Appointment Page</h1>
                 <AppointmentForm client_name="" phone_number="" startDateTime="" note="" />
                 <Form>
                     <FormGroup>
@@ -145,7 +145,7 @@ class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> 
                             value={this.state.note}
                         />
                     </FormGroup>
-                </Form>
+                </Form> */}
             </div>
         );
     }
