@@ -1,9 +1,31 @@
+import React from "react";
 import LoginForm from '../components/loginForm';
 
-export default function RegisterForm(){
+type RegisterFormProps = {
+    updateToken: (e: string) => void;
+    email: string;
+    password: string;
+    setEmail: (e: string) => void;
+    setPassword: (e: string) => void;
 
-    return (
-        <LoginForm endPoint="register" update={ ( ) => console.log} />
-    )
 };
 
+type RegisterFormState = {
+   
+};
+
+//
+class RegisterForm extends React.Component<RegisterFormProps, RegisterFormState> {
+    constructor(props: RegisterFormProps) {
+        super(props);
+    }
+    render() {
+        return (
+            <div>
+            </div>
+        )
+    }
+};
+
+
+export default RegisterForm;

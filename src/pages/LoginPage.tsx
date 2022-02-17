@@ -1,23 +1,18 @@
 import React from 'react';
-import LoginForm from '../components/loginForm';
+import Auth from '../components/Auth';
 
 
-type State = {
-    email: string,
-    password: string,};
-
-interface ILoginPageProps {
-    email: string,
-    password: string,
+type LoginPageProps = {
+    updateToken: (e: string) => void;
 };
 
-class LoginPage extends React.Component<ILoginPageProps, State>{
-    constructor(props:ILoginPageProps, state: State) {
+
+
+
+
+class LoginPage extends React.Component<LoginPageProps, {}>{
+    constructor(props: LoginPageProps) {
         super(props);
-        this.state = {
-            email: '',
-            password: '',
-        };
     };
 
     render() {
@@ -25,7 +20,7 @@ class LoginPage extends React.Component<ILoginPageProps, State>{
         return (
             <div>
                 <h1>Login Page</h1>
-                <LoginForm update={ ( ) => console.log}/>
+                <Auth updateToken={this.props.updateToken}  />
                 {/* <Form>
                     <FormGroup>
                         <Input

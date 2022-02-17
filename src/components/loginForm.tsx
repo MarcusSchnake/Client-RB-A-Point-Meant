@@ -2,9 +2,13 @@ import React from "react";
 import { Form, FormGroup, Input, Button } from "reactstrap";
 
 
-type Props = {
-  update:(data:Object) => Function;
-  endPoint?:string;
+type LoginFormProps = {
+  updateToken: (e: string) => void;
+  email: string;
+  password: string;
+  setEmail: (e: string) => void;
+  setPassword: (e: string) => void;
+
 };
 
 type State = {
@@ -14,20 +18,20 @@ type State = {
   
 };
 
-class Login extends React.Component<Props, State> {
-  constructor(props: Props) {
+class LoginForm extends React.Component<LoginFormProps, State> {
+  constructor(props: LoginFormProps) {
     super(props);
     this.state = {
       email: "",
       password: "", 
     };
   }
-
+//create handle submit for login and then register with endpoints****
   handleSubmit = () => {
     console.log("login handle");
     console.log(this.state.email, this.state.password);
-    const ep = this.props.endPoint || "login";
-    fetch(`http://localhost:3000/user/${ep}`, {
+    // const ep = this.props.endPoint || "login";//
+    fetch(`http://localhost:3000/user/login`, {
       method: "POST",
       body: JSON.stringify({
         users: {
@@ -42,8 +46,8 @@ class Login extends React.Component<Props, State> {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        console.log(this.props.update);
-        this.props.update(data);
+        console.log(this.props.updateToken);
+        this.props.updateToken(data);
       });
   };
 
@@ -105,4 +109,4 @@ class Login extends React.Component<Props, State> {
 
 
 
-export default Login;
+export default LoginForm;
