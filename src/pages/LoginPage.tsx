@@ -1,45 +1,29 @@
 import React from 'react';
+import { IUser } from '../App';
 import Auth from '../components/Auth';
 
 
 type LoginPageProps = {
-    updateToken: (e: string) => void;
+    updateToken:  (e:IUser) => void;
+    email: string;
+    password: string;
 };
-
-
-
-
 
 class LoginPage extends React.Component<LoginPageProps, {}>{
     constructor(props: LoginPageProps) {
         super(props);
+        this.state = {
+            hasError: false,
+            email: "",
+            password: ""
+        };
     };
 
     render() {
 
         return (
             <div>
-                <h1>Login Page</h1>
-                <Auth updateToken={this.props.updateToken}  />
-                {/* <Form>
-                    <FormGroup>
-                        <Input
-                            type="text"
-                            placeholder="Username"
-                            onChange={(e) => this.setState({ email: e.target.value })}
-                            value={this.state.email}
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <Input
-                            type="password"
-                            placeholder="Password"
-                            onChange={(e) => this.setState({ password: e.target.value })}
-                            value={this.state.password}
-                        />
-                    </FormGroup>
-                    <Button>Submit</Button>
-                </Form> */}
+                                <Auth updateToken={this.props.updateToken} />
             </div>
         );
 

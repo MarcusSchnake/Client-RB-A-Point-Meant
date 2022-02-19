@@ -1,9 +1,11 @@
 import React from "react";
-import { Form, FormGroup, Input, Button } from "reactstrap";
+import { Form, FormGroup, Input, Button, Container } from "reactstrap";
+import { Link } from 'react-router-dom';
+import { IUser } from "../App";
 
 
 type LoginFormProps = {
-  updateToken: (e: string) => void;
+  updateToken: (e: IUser) => void;
   email: string;
   password: string;
   setEmail: (e: string) => void;
@@ -14,29 +16,23 @@ type LoginFormProps = {
 type State = {
   email: string;
   password: string;
-  
-  
+
 };
 
 class LoginForm extends React.Component<LoginFormProps, State> {
   constructor(props: LoginFormProps) {
     super(props);
-    this.state = {
-      email: "",
-      password: "", 
-    };
   }
-//create handle submit for login and then register with endpoints****
-  handleSubmit = () => {
+  //create handle submit for login and then register with endpoints****
+  loginHandleSubmit = () => {
     console.log("login handle");
-    console.log(this.state.email, this.state.password);
-    // const ep = this.props.endPoint || "login";//
+    console.log(this.props.email, this.props.password);
     fetch(`http://localhost:3000/user/login`, {
       method: "POST",
       body: JSON.stringify({
-        users: {
-          email: this.state.email,
-          password: this.state.password,
+        user: {
+          email: this.props.email,
+          password: this.props.password,
         },
       }),
       headers: new Headers({
@@ -52,21 +48,22 @@ class LoginForm extends React.Component<LoginFormProps, State> {
   };
 
   render() {
-   
+    console.log(this.props)
     return (
-      <div>
+      <Container md="6">
+        <h1>Login</h1>
         <Form
           onSubmit={(e) => {
             e.preventDefault();
-            this.handleSubmit();
+            this.loginHandleSubmit();
           }}
         >
           <FormGroup floating>
             <Input
               type="text"
               placeholder="Email"
-              onChange={(e) => this.setState({ email: e.target.value })}
-              value={this.state.email}
+              onChange={(e) => this.props.setEmail(e.target.value)}
+              value={this.props.email}
             />
           </FormGroup>
 
@@ -74,39 +71,19 @@ class LoginForm extends React.Component<LoginFormProps, State> {
             <Input
               type="password"
               placeholder="Password"
-              onChange={(e) => this.setState({ password: e.target.value })}
-              value={this.state.password}
+              onChange={(e) => this.props.setPassword(e.target.value)}
+              value={this.props.password}
             />
             <Button type="submit">Login</Button>
+            <Link to= "/register">
+              <Button type="button">Need To Register?</Button>
+            </Link>
           </FormGroup>
-          <FormGroup floating>
-            <Input
-              type="text"
-              placeholder="Email"
-              onChange={(e) => this.setState({ email: e.target.value })}
-              value={this.state.email}
-            />
-          </FormGroup>
-
-          <FormGroup floating>
-            <Input
-              type="password"
-              placeholder="Password"
-              onChange={(e) => this.setState({ password: e.target.value })}
-              value={this.state.password}
-            />
-            <Button type="submit">Register</Button>
-          </FormGroup>
-           <Button type="submit">Login</Button> 
-          <Button type="submit">Register</Button> 
         </Form>
-      </div>
+      </Container>
     );
   }
 }
-
-
-
 
 
 export default LoginForm;

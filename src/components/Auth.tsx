@@ -1,19 +1,21 @@
 import React from "react";
+import { Navigate }  from "react-router-dom";
 import RegisterForm from "../components/RegisterForm";
 import LoginForm from "../components/loginForm";
 import { Container, Row, Col } from "reactstrap";
+import { IUser } from "../App"
 
 
-type AuthProps = {
-  updateToken: (e:string) => void;
+type AuthProps =
+ {
+  updateToken: (e: IUser) => void;
 };
 
 type AuthState = {
   hasError: boolean;
   email: string;
   password: string;
-  setEmail: (e:string) => void;
-  setPassword: (e:string) => void;
+  redirect: string | null;
 };
 
 class Auth extends React.Component<AuthProps, AuthState> {
@@ -23,50 +25,60 @@ class Auth extends React.Component<AuthProps, AuthState> {
       hasError: false,
       email: "",
       password: "",
-      setEmail: (e: string) => {
-        this.setState({ email: e });
-      },
-      setPassword: (e: string) => {
-        this.setState({ password: e });
-      },
+      redirect: null,
     };
   }
 
-  static getDerivedStateFromError(error: string) {
-    return { hasError: true };
+  setEmail = (input: string) => {
+    this.setState({ email: input });
   }
 
-  componentDidCatch(error: any, errorInfo: any) {
-    console.log(error, errorInfo);
+  setPassword = (input: string) => {
+    this.setState({ password: input });
   }
 
   render() {
-    console.log("Auth render");
     if (this.state.hasError) {
       return <h1>Error</h1>;
     }
+    if (localStorage.getItem('token')) {
+      return <Navigate to="/appointment" />;
+    }
+    const pathname = window.location.pathname;
+    const showRegister = pathname === '/register';
+    const showLogin = (pathname === '/login' || pathname === '/');
+    console.log(window.location.pathname, showRegister, showLogin)//needed for all crud endpoints
+    
     return (
+      
       <Container>
-        <Row>
-          <Col md="6">
-            <RegisterForm 
-            updateToken={this.props.updateToken}
-            setEmail={this.state.setEmail} 
-            setPassword={this.state.setPassword}
-            email={this.state.email}
-            password={this.state.password} 
-            />
-          </Col>
-          <Col md="6">
-            <LoginForm  
-            updateToken={this.props.updateToken}
-            setEmail={this.state.setEmail} 
-            setPassword={this.state.setPassword}
-            email={this.state.email}
-            password={this.state.password} />
-          </Col>
+        <Row
+          style={{ justifyContent: 'center' }}
+        >
+          {(showRegister) && (
+            <Col md="6">
+              <RegisterForm
+                updateToken={this.props.updateToken}
+                setEmail={this.setEmail}
+                setPassword={this.setPassword}
+                email={this.state.email}
+                password={this.state.password}
+              />
+            </Col>
+          )}
+          {(showLogin) && (
+            <Col md="6">
+              <LoginForm
+                updateToken={this.props.updateToken}
+                setEmail={this.setEmail}
+                setPassword={this.setPassword}
+                email={this.state.email}
+                password={this.state.password}
+              />
+            </Col>
+          )}
         </Row>
-      </Container>
+      </Container >
     );
   }
 }

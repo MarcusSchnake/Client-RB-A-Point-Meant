@@ -1,5 +1,6 @@
 import React from 'react';
-import { Form, FormGroup, Input, Button } from 'reactstrap'
+import { Form, FormGroup, Input, Button, Container } from 'reactstrap'
+
 
 type State = {
   client_name: string,
@@ -32,9 +33,9 @@ class AppointmentForm extends React.Component<IAppointmentPage, State> {
   render() {
     // console.log(this.props.client_name);
     return (
-      <div>
-        <h1>Appointment Page</h1>
-        <Form>
+        <Container md="12">
+          <Form md="6">
+          <h1>Appointment Page</h1>
           <FormGroup>
             <Input
               type="text"
@@ -59,7 +60,7 @@ class AppointmentForm extends React.Component<IAppointmentPage, State> {
               value={this.state.startDateTime}
             />
           </FormGroup>
-          <FormGroup>
+          <FormGroup >
             <Input
               type="text"
               placeholder="Note"
@@ -70,7 +71,8 @@ class AppointmentForm extends React.Component<IAppointmentPage, State> {
           <Button type="submit">Submit</Button>
           <Button type="submit">Update</Button>
         </Form>
-      </div>
+        </Container>
+        
     );
   }
 }

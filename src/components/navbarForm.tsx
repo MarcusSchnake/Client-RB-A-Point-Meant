@@ -6,17 +6,17 @@ export default function NavBar() {
 
     return (
         <div>
-            <Navbar color="blue"/>
+            <Navbar color="Red"/>
             <Nav pills>
                 <NavItem>
                     <NavLink
                         active
-                        href="#"
+                        href="http://localhost:3001/home"
                     >
-                        Link
+                        APointMeant
                     </NavLink>
                 </NavItem>
-                <Dropdown
+                {/* <Dropdown
                     nav
                     toggle={function noRefCheck() { }}
                 >
@@ -41,23 +41,15 @@ export default function NavBar() {
                             Another Action
                         </DropdownItem>
                     </DropdownMenu>
-                </Dropdown>
+                </Dropdown> */}
                 <NavItem>
-                    <NavLink href="#">
-                        Link
+                    <NavLink href="http://localhost:3001/appointment">
+                        Appointment
                     </NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink href="#">
-                        Another Link
-                    </NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink
-                        disabled
-                        href="#"
-                    >
-                        Disabled Link
+                    <NavLink href="http://localhost:3001/todo">
+                        Todo's
                     </NavLink>
                 </NavItem>
             </Nav>

@@ -1,6 +1,6 @@
 import React from 'react';
 // import { type } from 'node:os';
-import { Form, FormGroup, Input } from 'reactstrap'
+import { Container, FormGroup, Input, Button } from 'reactstrap'
 
 
 
@@ -27,26 +27,28 @@ class TodoFormProps extends React.Component<ITodoFormProps, State> {
   render() {
     return (
       <div>
-        <Form>
-          <FormGroup>
-            <Input
-              type="text"
-              placeholder="Subject"
-              onChange={(e) => this.setState({ subject: e.target.value })}
-              value={this.state.subject}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Input
-              type="text"
-              placeholder="Todo Item"
-              onChange={(e) => this.setState({ todo_item: e.target.value })}
-              value={this.state.todo_item}
-            />
-          </FormGroup>
-          
-        </Form>
+
       </div>
+      // <Container md= "6">
+        
+      //     <FormGroup md="6">
+      //       <Input
+      //         type="text"
+      //         placeholder="Subject"
+      //         onChange={(e) => this.setState({ subject: e.target.value })}
+      //         value={this.state.subject}
+      //       />
+      //     </FormGroup >
+      //     <FormGroup md= "6">
+      //       <Input
+      //         type="text"
+      //         placeholder="Todo Item"
+      //         onChange={(e) => this.setState({ todo_item: e.target.value })}
+      //         value={this.state.todo_item}
+      //       />
+            
+      //     </FormGroup>
+      // </Container>
     );
   }
 }
