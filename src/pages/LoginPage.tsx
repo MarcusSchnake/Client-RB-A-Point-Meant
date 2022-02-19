@@ -4,7 +4,6 @@ import Auth from '../components/Auth';
 
 
 type LoginPageProps = {
-    updateToken:  (e:IUser) => void;
     email: string;
     password: string;
 };
@@ -23,7 +22,7 @@ class LoginPage extends React.Component<LoginPageProps, {}>{
 
         return (
             <div>
-                                <Auth updateToken={this.props.updateToken} />
+                                <Auth />
             </div>
         );
 

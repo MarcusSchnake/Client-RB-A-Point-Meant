@@ -25,7 +25,6 @@ class LoginForm extends React.Component<LoginFormProps, State> {
   }
   //create handle submit for login and then register with endpoints****
   loginHandleSubmit = () => {
-    console.log("login handle");
     console.log(this.props.email, this.props.password);
     fetch(`http://localhost:3000/user/login`, {
       method: "POST",
@@ -41,9 +40,10 @@ class LoginForm extends React.Component<LoginFormProps, State> {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        console.log(this.props.updateToken);
-        this.props.updateToken(data);
+        if (data?.sessionToken) {
+          this.props.updateToken(data);
+        }
+
       });
   };
 
@@ -75,7 +75,7 @@ class LoginForm extends React.Component<LoginFormProps, State> {
               value={this.props.password}
             />
             <Button type="submit">Login</Button>
-            <Link to= "/register">
+            <Link to="/register">
               <Button type="button">Need To Register?</Button>
             </Link>
           </FormGroup>

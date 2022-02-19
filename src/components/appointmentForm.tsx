@@ -1,9 +1,13 @@
 import React from 'react';
-import { Form, FormGroup, Input, Button, Container } from 'reactstrap'
+import { Form, FormGroup, Input, Button, Container } from 'reactstrap';
+import AppointPages from '../pages/appointmentPage'
+
+
 
 
 type State = {
   client_name: string,
+  email: string,
   phone_number: string,
   startDateTime: string,
   note: string,
@@ -12,30 +16,64 @@ type State = {
 interface IAppointmentPage {
 
   client_name: string,
+  email: string,
   phone_number: string,
   startDateTime: string,
   note: string,
 }
+
 
 class AppointmentForm extends React.Component<IAppointmentPage, State> {
   constructor(props: IAppointmentPage) {
     super(props);
     this.state = {
       client_name: this.props.client_name,
+      email: this.props.email,
       phone_number: this.props.phone_number,
       startDateTime: this.props.startDateTime,
       note: this.props.note,
     }
   };
+  handleSubmit = (event:any) => {//need to make all fields not null
+    fetch('http://localhost:3000/appointment/create', {
+      method: 'POST',
+      body: JSON.stringify({
+        appointment: {
+          client_name: this.state.client_name,
+          email: this.state.email,
+          phone_number: this.state.phone_number,
+          startDateTime: this.state.startDateTime,
+          note: this.state.note,
+        },
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('token')
+      }
+    })
+
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      }
+      )
+
+   
+    };
+    
 
 
 
   render() {
-    // console.log(this.props.client_name);
     return (
         <Container md="12">
-          <Form md="6">
           <h1>Appointment Page</h1>
+          <Form
+          onSubmit={(event) => {
+            event.preventDefault();
+            this.handleSubmit(event);
+          }}
+        >
           <FormGroup>
             <Input
               type="text"

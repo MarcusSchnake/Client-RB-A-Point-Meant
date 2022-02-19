@@ -1,13 +1,9 @@
-// require('dotenv').config();
-// import React, { Fragment } from 'react';
-import { ReactDOM, useState } from 'react';
-// import Auth from './components/Auth';
 import Navbar from './components/navbarForm';
 import LoginPage from './pages/LoginPage';
 import AppointmentPage from './pages/appointmentPage'
 import TodoPage from './pages/todoPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 export interface  IUser {
   sessionToken: string;
@@ -15,9 +11,7 @@ export interface  IUser {
 }
 
 function App() {
-  const updateToken = (userData: IUser) => {
-    localStorage.setItem('token', userData.sessionToken);
-  };
+  
 
 
 
@@ -39,47 +33,47 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<LoginPage updateToken={updateToken} email="" password="" />}
+          element={<LoginPage email="" password="" />}
         />
         <Route
           path="/login"
-          element={<LoginPage updateToken={updateToken} email="" password="" />}
+          element={<LoginPage email="" password="" />}
         />
         <Route
           path="/register"
-          element={<LoginPage updateToken={updateToken} email="" password="" />}
+          element={<LoginPage email="" password="" />}
         />
         {localStorage.getItem('token') && (
           <Route
             path="/user/login"
-            element={<LoginPage updateToken={updateToken} email="" password="" />}
+            element={<LoginPage email="" password="" />}
           />
         )};
         {localStorage.getItem('token') && (
           <>
             <Route
               path="/appointment"
-              element={<AppointmentPage client_name="" phone_number="" startDateTime="" note="" />}
+              element={<AppointmentPage client_name="" email="" phone_number="" startDateTime="" note="" />}
             />
             <Route
               path="/appointment/create"
-              element={<AppointmentPage client_name="" phone_number="" startDateTime="" note="" />}
+              element={<AppointmentPage client_name="" email="" phone_number="" startDateTime="" note="" />}
             />
             <Route
               path="/appointment/:id"
-              element={<AppointmentPage client_name="" phone_number="" startDateTime="" note="" />}
+              element={<AppointmentPage client_name="" email="" phone_number="" startDateTime="" note="" />}
             />
             <Route
               path="/appointment/delete/:id"
-              element={<AppointmentPage client_name="" phone_number="" startDateTime="" note="" />}
+              element={<AppointmentPage client_name="" email="" phone_number="" startDateTime="" note="" />}
             />
             <Route
               path="/appointment/update/:id"
-              element={<AppointmentPage client_name="" phone_number="" startDateTime="" note="" />}
+              element={<AppointmentPage client_name="" email="" phone_number="" startDateTime="" note="" />}
             />
             <Route
               path="appointment/get"
-              element={<AppointmentPage client_name="" phone_number="" startDateTime="" note="" />}
+              element={<AppointmentPage client_name="" email="" phone_number="" startDateTime="" note="" />}
             />
           </>
         )};

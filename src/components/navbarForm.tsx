@@ -11,7 +11,7 @@ export default function NavBar() {
                 <NavItem>
                     <NavLink
                         active
-                        href="http://localhost:3001/home"
+                        href="http://localhost:3001/register"
                     >
                         APointMeant
                     </NavLink>

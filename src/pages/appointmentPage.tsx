@@ -1,9 +1,9 @@
 import React from 'react';
-import { Form, FormGroup, Input } from 'reactstrap'
 import AppointmentForm from '../components/appointmentForm';
 
 type State = {
     client_name: string,
+    email: string,
     phone_number: string,
     startDateTime: string,
     note: string,
@@ -11,6 +11,7 @@ type State = {
 
 interface IUpdateAppointmentProps {
     client_name: string,
+    email: string,
     phone_number: string,
     startDateTime: string,
     note: string,
@@ -22,6 +23,7 @@ class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> 
         super(props);
         this.state = {
             client_name: this.props.client_name,
+            email: this.props.email,
             phone_number: this.props.phone_number,
             startDateTime: this.props.startDateTime,
             note: this.props.note,
@@ -29,20 +31,22 @@ class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> 
     };
 
 
-    handleSubmit = (event: any) => {
+//    handleSubmit = (event: any) => {
+//         event.preventDefault();
+//         const { client_name, phone_number, startDateTime, note } = this.state;
+//         const appointment = {
+//             client_name,
+//             phone_number,
+//             startDateTime,
+//             note,
+//         };
+//         console.log(appointment);
+//     };
+
+    CreateAppointment = (event: any) => {
         event.preventDefault();
-        const { client_name, phone_number, startDateTime, note } = this.state;
-        const appointment = {
-            client_name,
-            phone_number,
-            startDateTime,
-            note,
-        };
-        console.log(appointment);
-    };
-    UpdateAppointments = (event: any) => {
-        fetch('http://localhost:3000/appointments', {
-            method: 'PUT',
+        fetch('http://localhost:3000/appointment/create', {
+            method: 'POST',
             body: JSON.stringify({
                 Appointment: {
                     client_name: this.state.client_name,
@@ -60,36 +64,62 @@ class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> 
             .then(data => console.log(data))
             .catch(err => console.log(err));
     };
+   
 
-
-    GetAppointments = () => {
-        fetch('http://localhost:3000/appointments', {
-            method: 'GET',
+    UpdateAppointments = (event: any) => {
+        const id = event.target.id;
+        fetch(`http://localhost:3000/appointment/${id}`, {
+            method: 'PUT',
             body: JSON.stringify({
-                appointments: {
+                Appointment: {
                     client_name: this.state.client_name,
+                    email: this.state.email,
                     phone_number: this.state.phone_number,
                     startDateTime: this.state.startDateTime,
                     note: this.state.note,
                 },
             }),
-            headers: new Headers({
+            headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('token')}`,
-            }),
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
         })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-            });
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => console.log(err));
     };
 
-    DeleteAppointments = () => {
-        fetch('http://localhost:3000/appointments', {
+
+    // GetAppointments = () => {
+    //     fetch('http://localhost:3000/appointment', {
+    //         method: 'GET',
+    //         body: JSON.stringify({
+    //             appointments: {
+    //                 client_name: this.state.client_name,
+    //                 phone_number: this.state.phone_number,
+    //                 startDateTime: this.state.startDateTime,
+    //                 note: this.state.note,
+    //             },
+    //         }),
+    //         headers: new Headers({
+    //             'Content-Type': 'application/json',
+    //             Authorization: `Bearer ${localStorage.getItem('token')}`,
+    //         }),
+    //     })
+    //         .then((response) => response.json())
+    //         .then((data) => {
+    //             console.log(data);
+    //         });
+    // };
+
+    DeleteAppointments = (event: any) => {
+        const id = event.target.id;
+        fetch(`http://localhost:3000/appointment/${id}`, {
             method: 'DELETE',
             body: JSON.stringify({
                 appointments: {
                     client_name: this.state.client_name,
+                    email: this.state.email,
                     phone_number: this.state.phone_number,
                     startDateTime: this.state.startDateTime,
                     note: this.state.note,
@@ -110,42 +140,10 @@ class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> 
     render() {
         return (
             <div>
-                {/* <h1>Appointment Page</h1> */}
-                <AppointmentForm client_name="" phone_number="" startDateTime="" note="" />
-                {/* <Form>
-                    <FormGroup>
-                        <Input
-                            type="text"
-                            placeholder="Client Name"
-                            onChange={(e) => this.setState({ client_name: e.target.value })}
-                            value={this.state.client_name}
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <Input
-                            type="text"
-                            placeholder="Phone Number"
-                            onChange={(e) => this.setState({ phone_number: e.target.value })}
-                            value={this.state.phone_number}
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <Input
-                            type="text"
-                            placeholder="Start Date and Time"
-                            onChange={(e) => this.setState({ startDateTime: e.target.value })}
-                            value={this.state.startDateTime}
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <Input
-                            type="text"
-                            placeholder="Note"
-                            onChange={(e) => this.setState({ note: e.target.value })}
-                            value={this.state.note}
-                        />
-                    </FormGroup>
-                </Form> */}
+                <AppointmentForm  client_name="" email="" phone_number="" startDateTime="" note=""
+                 />
+
+              
             </div>
         );
     }

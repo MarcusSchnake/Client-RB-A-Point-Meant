@@ -1,33 +1,38 @@
 import React from "react";
-import { Navigate }  from "react-router-dom";
 import RegisterForm from "../components/RegisterForm";
 import LoginForm from "../components/loginForm";
 import { Container, Row, Col } from "reactstrap";
 import { IUser } from "../App"
 
 
-type AuthProps =
- {
-  updateToken: (e: IUser) => void;
-};
+
+type EmptyProps = {
+}
 
 type AuthState = {
   hasError: boolean;
   email: string;
   password: string;
-  redirect: string | null;
+  loggedIn: boolean | null;
 };
 
-class Auth extends React.Component<AuthProps, AuthState> {
-  constructor(props: AuthProps) {
+class Auth extends React.Component<EmptyProps, AuthState> {
+  constructor(props: EmptyProps) {
     super(props);
     this.state = {
       hasError: false,
       email: "",
       password: "",
-      redirect: null,
+      loggedIn: null
     };
   }
+
+  updateToken = (userData: IUser) => {
+    localStorage.setItem('token', userData.sessionToken);
+    this.setState ({
+      loggedIn: true
+    })
+  };
 
   setEmail = (input: string) => {
     this.setState({ email: input });
@@ -42,7 +47,7 @@ class Auth extends React.Component<AuthProps, AuthState> {
       return <h1>Error</h1>;
     }
     if (localStorage.getItem('token')) {
-      return <Navigate to="/appointment" />;
+       window.location.replace("/appointment");
     }
     const pathname = window.location.pathname;
     const showRegister = pathname === '/register';
@@ -58,7 +63,7 @@ class Auth extends React.Component<AuthProps, AuthState> {
           {(showRegister) && (
             <Col md="6">
               <RegisterForm
-                updateToken={this.props.updateToken}
+                updateToken={this.updateToken}
                 setEmail={this.setEmail}
                 setPassword={this.setPassword}
                 email={this.state.email}
@@ -69,7 +74,7 @@ class Auth extends React.Component<AuthProps, AuthState> {
           {(showLogin) && (
             <Col md="6">
               <LoginForm
-                updateToken={this.props.updateToken}
+                updateToken={this.updateToken}
                 setEmail={this.setEmail}
                 setPassword={this.setPassword}
                 email={this.state.email}
