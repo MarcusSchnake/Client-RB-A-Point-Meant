@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Button, FormGroup, Input, Col } from "reactstrap";
+import { Container, Button, FormGroup, Input, Col, ButtonGroup } from "reactstrap";
 import { IUser } from "../App";
 import {Link} from 'react-router-dom';
 
@@ -20,10 +20,8 @@ class RegisterForm extends React.Component<RegisterFormProps> {
     }
 
     registerHandleSubmit = () => {
-        console.log("login handle");
-        console.log(this.props.email, this.props.password);
         // const ep = this.props.endPoint || "login";//
-        fetch(`http://localhost:3000/user/register`, {
+        fetch('http://localhost:3000/user/register', {
             method: "POST",
             body: JSON.stringify({
                 user: {
@@ -55,7 +53,6 @@ class RegisterForm extends React.Component<RegisterFormProps> {
                         <Input
                             type="text"
                             placeholder="Email"
-                            // onChange={(e) => this.setState({ email: e.target.value })}
                             onChange={(e) => this.props.setEmail(e.target.value)}
                             value={this.props.email}
                         />
@@ -68,10 +65,12 @@ class RegisterForm extends React.Component<RegisterFormProps> {
                             onChange={(e) => this.props.setPassword(e.target.value)}
                             value={this.props.password}
                         />
+                        <ButtonGroup>
                         <Button type="submit" onClick={this.registerHandleSubmit}>Register</Button>
                         <Link to="/login">
                             <Button type="button">Already registered?</Button>
                         </Link>
+                        </ButtonGroup>
                     </FormGroup>
                 </Col>
             </Container>

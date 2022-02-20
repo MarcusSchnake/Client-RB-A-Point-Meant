@@ -47,6 +47,12 @@ class LoginForm extends React.Component<LoginFormProps, State> {
       });
   };
 
+  // Logout = () => {
+  //   localStorage.clear();
+  //   window.location.replace("/");
+
+  // }
+
   render() {
     console.log(this.props)
     return (

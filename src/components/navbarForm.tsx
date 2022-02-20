@@ -1,19 +1,19 @@
 import React from 'react';
-import {  Navbar,Nav, NavItem,NavLink,Dropdown,DropdownToggle,DropdownMenu,DropdownItem, } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import {  Navbar, Nav, NavItem, NavLink } from 'reactstrap';
 
 
 export default function NavBar() {
 
     return (
         <div>
-            <Navbar color="Red"/>
+            <Navbar/>
             <Nav pills>
                 <NavItem>
-                    <NavLink
-                        active
-                        href="http://localhost:3001/register"
-                    >
-                        APointMeant
+                    <NavLink>
+                        <Link to="/register">
+
+                        Register/Login</Link>
                     </NavLink>
                 </NavItem>
                 {/* <Dropdown
@@ -43,7 +43,7 @@ export default function NavBar() {
                     </DropdownMenu>
                 </Dropdown> */}
                 <NavItem>
-                    <NavLink href="http://localhost:3001/appointment">
+                    <NavLink href="http://localhost:3001/register">
                         Appointment
                     </NavLink>
                 </NavItem>

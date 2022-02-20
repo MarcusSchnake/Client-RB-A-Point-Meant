@@ -1,25 +1,28 @@
 import React from 'react';
 import { Form, FormGroup, Input, Button, Container } from 'reactstrap';
-import AppointPages from '../pages/appointmentPage'
-
+import DeleteAppointment from '../components/DeleteAppointment';
+import UpdateAppointments from '../components/UpdateAppointments';
+import ViewAllAppointments from '../components/ViewAllAppointments';
 
 
 
 type State = {
   client_name: string,
   email: string,
-  phone_number: string,
-  startDateTime: string,
+  phone: string,
+  startDateTime: string,//2022-03-03 05:30:00 formate
   note: string,
+
 }
 
 interface IAppointmentPage {
 
   client_name: string,
   email: string,
-  phone_number: string,
+  phone: string,
   startDateTime: string,
   note: string,
+
 }
 
 
@@ -29,21 +32,26 @@ class AppointmentForm extends React.Component<IAppointmentPage, State> {
     this.state = {
       client_name: this.props.client_name,
       email: this.props.email,
-      phone_number: this.props.phone_number,
+      phone: this.props.phone,
       startDateTime: this.props.startDateTime,
       note: this.props.note,
+
     }
   };
-  handleSubmit = (event:any) => {//need to make all fields not null
+
+
+  handleCreateSubmit = (event: any) => {//need to make all fields not null
+    // console.log(this.state)
     fetch('http://localhost:3000/appointment/create', {
       method: 'POST',
       body: JSON.stringify({
         appointment: {
           client_name: this.state.client_name,
-          email: this.state.email,
-          phone_number: this.state.phone_number,
+          phone: this.state.phone,
           startDateTime: this.state.startDateTime,
           note: this.state.note,
+          email: this.state.email,
+
         },
       }),
       headers: {
@@ -57,21 +65,20 @@ class AppointmentForm extends React.Component<IAppointmentPage, State> {
         console.log(data);
       }
       )
+      .catch(err => console.log(err));
+  };
 
-   
-    };
-    
 
 
 
   render() {
     return (
-        <Container md="12">
-          <h1>Appointment Page</h1>
-          <Form
+      <Container md="12">
+        <h1>Appointment Page</h1>
+        <Form
           onSubmit={(event) => {
             event.preventDefault();
-            this.handleSubmit(event);
+            this.handleCreateSubmit(event);
           }}
         >
           <FormGroup>
@@ -86,8 +93,16 @@ class AppointmentForm extends React.Component<IAppointmentPage, State> {
             <Input
               type="text"
               placeholder="Phone Number"
-              onChange={(e) => this.setState({ phone_number: e.target.value })}
-              value={this.state.phone_number}
+              onChange={(e) => this.setState({ phone: e.target.value })}
+              value={this.state.phone}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Input
+              type="text"
+              placeholder="Email"
+              onChange={(e) => this.setState({ email: e.target.value })}
+              value={this.state.email}
             />
           </FormGroup>
           <FormGroup>
@@ -106,12 +121,16 @@ class AppointmentForm extends React.Component<IAppointmentPage, State> {
               value={this.state.note}
             />
           </FormGroup>
-          <Button type="submit">Submit</Button>
-          <Button type="submit">Update</Button>
+          <Button type="submit" >Submit</Button>
+          <Button id="submitUpdate" onclick={UpdateAppointments}>Update</Button>
+          <Button id="deleteButton" >Delete</Button>
+          <Button id="getAppointments" onclick={ViewAllAppointments}>Get All</Button>
+
         </Form>
-        </Container>
-        
+      </Container>
+
     );
+
   }
 }
 

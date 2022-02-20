@@ -1,20 +1,23 @@
 import React from 'react';
 import AppointmentForm from '../components/appointmentForm';
+import {Button, Form, FormGroup, Input, Container} from 'reactstrap';
 
 type State = {
     client_name: string,
     email: string,
-    phone_number: string,
+    phone: string,
     startDateTime: string,
     note: string,
+    
 }
 
 interface IUpdateAppointmentProps {
     client_name: string,
     email: string,
-    phone_number: string,
+    phone: string,
     startDateTime: string,
     note: string,
+    
 }
 
 
@@ -24,19 +27,20 @@ class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> 
         this.state = {
             client_name: this.props.client_name,
             email: this.props.email,
-            phone_number: this.props.phone_number,
+            phone: this.props.phone,
             startDateTime: this.props.startDateTime,
             note: this.props.note,
+
         };
     };
 
 
 //    handleSubmit = (event: any) => {
 //         event.preventDefault();
-//         const { client_name, phone_number, startDateTime, note } = this.state;
+//         const { client_name, phone, startDateTime, note } = this.state;
 //         const appointment = {
 //             client_name,
-//             phone_number,
+//             phone,
 //             startDateTime,
 //             note,
 //         };
@@ -50,9 +54,11 @@ class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> 
             body: JSON.stringify({
                 Appointment: {
                     client_name: this.state.client_name,
-                    phone_number: this.state.phone_number,
+                    phone: this.state.phone,
+                    email: this.state.email,
                     startDateTime: this.state.startDateTime,
                     note: this.state.note,
+                   
                 },
             }),
             headers: {
@@ -66,37 +72,64 @@ class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> 
     };
    
 
-    UpdateAppointments = (event: any) => {
+    // UpdateAppointments = (event: any) => {
+    //     const id = event.target.id;
+    //     fetch(`http://localhost:3000/appointment/${id}`, {
+    //         method: 'PUT',
+    //         body: JSON.stringify({
+    //             Appointment: {
+    //                 client_name: this.state.client_name,
+    //                 email: this.state.email,
+    //                 phone: this.state.phone,
+    //                 startDateTime: this.state.startDateTime,
+    //                 note: this.state.note,
+    //                 // id: this.state.id,
+    //             },
+    //         }),
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             Authorization: 'Bearer ' + localStorage.getItem('token')
+    //         }
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => console.log(data))
+    //         .catch(err => console.log(err));
+    // };
+
+
+    GetAppointments = (event:any) => {
         const id = event.target.id;
         fetch(`http://localhost:3000/appointment/${id}`, {
-            method: 'PUT',
+            method: 'GET',
             body: JSON.stringify({
-                Appointment: {
+                appointments: {
                     client_name: this.state.client_name,
-                    email: this.state.email,
-                    phone_number: this.state.phone_number,
+                    phone: this.state.phone,
                     startDateTime: this.state.startDateTime,
                     note: this.state.note,
+                    // id: this.state.id,
                 },
             }),
-            headers: {
+            headers: new Headers({
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + localStorage.getItem('token')
-            }
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            }),
         })
-            .then(res => res.json())
-            .then(data => console.log(data))
-            .catch(err => console.log(err));
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+            });
     };
 
-
-    // GetAppointments = () => {
-    //     fetch('http://localhost:3000/appointment', {
-    //         method: 'GET',
+    // DeleteAppointments = (event: any) => {
+    //     const id = event.target.id;
+    //     fetch(`http://localhost:3000/appointment/${id}`, {
+    //         method: 'DELETE',
     //         body: JSON.stringify({
     //             appointments: {
     //                 client_name: this.state.client_name,
-    //                 phone_number: this.state.phone_number,
+    //                 email: this.state.email,
+    //                 phone: this.state.phone,
     //                 startDateTime: this.state.startDateTime,
     //                 note: this.state.note,
     //             },
@@ -112,39 +145,21 @@ class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> 
     //         });
     // };
 
-    DeleteAppointments = (event: any) => {
-        const id = event.target.id;
-        fetch(`http://localhost:3000/appointment/${id}`, {
-            method: 'DELETE',
-            body: JSON.stringify({
-                appointments: {
-                    client_name: this.state.client_name,
-                    email: this.state.email,
-                    phone_number: this.state.phone_number,
-                    startDateTime: this.state.startDateTime,
-                    note: this.state.note,
-                },
-            }),
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('token')}`,
-            }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-            });
-    };
-
 
     render() {
+        // console.log(window.location.pathname.split('/')[3]);
         return (
-            <div>
-                <AppointmentForm  client_name="" email="" phone_number="" startDateTime="" note=""
+            <Container>
+                <AppointmentForm  client_name="" email="" phone="" startDateTime="" note="" 
                  />
-
-              
-            </div>
+            </Container>
+        );
+        return (
+            <Container>
+                
+            </Container>
+                
+            
         );
     }
 };

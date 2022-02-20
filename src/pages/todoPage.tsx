@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, FormGroup, Input, Container, Button } from 'reactstrap'
+import { Form, FormGroup, Input, Container, Button, ButtonGroup } from 'reactstrap'
 import { IUser } from '../App';
 import TodoForm from '../components/todoForm';
 
@@ -23,7 +23,7 @@ class UpdateTodo extends React.Component<IUpdateTodo, State> {
     super(props);
     this.state = {
       subject: this.props.subject,
-      todo_item: this.props.todo_item,  
+      todo_item: this.props.todo_item,
     };
   };
 
@@ -119,36 +119,39 @@ class UpdateTodo extends React.Component<IUpdateTodo, State> {
   render() {
     return (
       <div>
-        
+
         <TodoForm subject="" todo_item="" />
         <Form onSubmit={(e) => {
-            e.preventDefault();
-          }}>
+          e.preventDefault();
+        }}>
           <FormGroup>
-          <Container md= "6">
-          <h1>Todo's</h1>
-        
-        <FormGroup md="6">
-          <Input
-            type="text"
-            placeholder="Subject"
-            onChange={(e) => this.setState({ subject: e.target.value })}
-            value={this.state.subject}
-          />
-        </FormGroup >
-        <FormGroup md= "6">
-          <Input
-            type="text"
-            placeholder="Todo Item"
-            onChange={(e) => this.setState({ todo_item: e.target.value })}
-            value={this.state.todo_item}
-          />
-            <Button onClick={this.CreateTodo} type="submit">Create Todo</Button>
-            <Button onClick={this.GetTodo} type="submit">Get Todo's</Button>
-            <Button onClick={this.UpdateTodo} type="submit">Update</Button>
-          
-        </FormGroup>
-    </Container>
+            <Container md="6">
+              <h1>Todo's</h1>
+
+              <FormGroup md="6">
+                <Input
+                  type="text"
+                  placeholder="Subject"
+                  onChange={(e) => this.setState({ subject: e.target.value })}
+                  value={this.state.subject}
+                />
+              </FormGroup >
+              <FormGroup md="6">
+                <Input
+                  type="text"
+                  placeholder="Todo Item"
+                  onChange={(e) => this.setState({ todo_item: e.target.value })}
+                  value={this.state.todo_item}
+                />
+                <ButtonGroup>
+
+                  <Button onClick={this.CreateTodo} type="submit">Create Todo</Button>
+                  <Button onClick={this.GetTodo} type="submit">Get Todo's</Button>
+                  <Button onClick={this.UpdateTodo} type="submit">Update</Button>
+                </ButtonGroup>
+
+              </FormGroup>
+            </Container>
           </FormGroup>
 
         </Form>

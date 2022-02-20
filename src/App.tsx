@@ -4,6 +4,13 @@ import AppointmentPage from './pages/appointmentPage'
 import TodoPage from './pages/todoPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ViewAllAppointments from './components/ViewAllAppointments';
+import ViewAllTodo from './components/ViewAllTodo';
+import UpdateTodo from './components/UpdateTodo';
+import UpdateAppointment from './components/UpdateAppointments';
+import DeleteAppointment from './components/DeleteAppointment';
+
+
 
 export interface  IUser {
   sessionToken: string;
@@ -32,13 +39,13 @@ function App() {
       <Navbar />
       <Routes>
         <Route
-          path="/"
-          element={<LoginPage email="" password="" />}
-        />
-        <Route
           path="/login"
           element={<LoginPage email="" password="" />}
         />
+        {/* <Route
+          path="/login"
+          element={<LoginPage email="" password="" />}
+        /> */}
         <Route
           path="/register"
           element={<LoginPage email="" password="" />}
@@ -53,27 +60,27 @@ function App() {
           <>
             <Route
               path="/appointment"
-              element={<AppointmentPage client_name="" email="" phone_number="" startDateTime="" note="" />}
+              element={<AppointmentPage client_name="" email="" phone="" startDateTime="" note="" />}
             />
             <Route
               path="/appointment/create"
-              element={<AppointmentPage client_name="" email="" phone_number="" startDateTime="" note="" />}
-            />
-            <Route
-              path="/appointment/:id"
-              element={<AppointmentPage client_name="" email="" phone_number="" startDateTime="" note="" />}
+              element={<AppointmentPage client_name="" email="" phone="" startDateTime="" note="" />}
             />
             <Route
               path="/appointment/delete/:id"
-              element={<AppointmentPage client_name="" email="" phone_number="" startDateTime="" note="" />}
+              element={<DeleteAppointment />}
+            />
+            <Route
+              path="/appointment/:id"
+              element={<AppointmentPage client_name="" email="" phone="" startDateTime="" note="" />}
             />
             <Route
               path="/appointment/update/:id"
-              element={<AppointmentPage client_name="" email="" phone_number="" startDateTime="" note="" />}
+              element={<UpdateAppointment />}
             />
             <Route
-              path="appointment/get"
-              element={<AppointmentPage client_name="" email="" phone_number="" startDateTime="" note="" />}
+              path="appointment/getAll"
+              element={ <ViewAllAppointments/>}
             />
           </>
         )};
@@ -98,6 +105,11 @@ function App() {
             <Route
               path="/todo/update/:id"
               element={<TodoPage subject="" todo_item="" />}
+            />
+            <Route 
+              path="/todo/getAll/:id"
+              element={<ViewAllTodo />}
+             
             />
           </>
         )};
