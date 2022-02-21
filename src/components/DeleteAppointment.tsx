@@ -15,11 +15,11 @@ class DeleteAppointment extends React.Component<{}, State> {
     }
     Delete = () => {
         const id = window.location.pathname.split('/')[3];
-        fetch(`https://client-rb-a-point-meant.herokuapp.com/appointment/delete/${id}`, {
-        method: 'DELETE',
+        fetch(`https://a-point-meant.herokuapp.com/appointment/delete/${id}`, {
+            method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('token')}` 
+                Authorization: `Bearer ${localStorage.getItem('token')}`
             }
         })
             .then(res => res.json())
@@ -27,7 +27,7 @@ class DeleteAppointment extends React.Component<{}, State> {
                 console.log(data);
                 this.setState({
                     didDelete: true,
-                    
+
                 })
             })
             .catch(err => console.log(err));
@@ -38,10 +38,10 @@ class DeleteAppointment extends React.Component<{}, State> {
     render() {
         return (
             <div>
-                <h1>Appointment {this.state.didDelete ? "Successfully Deleted" : "Is Pending Delete" }</h1>
+                <h1>Appointment {this.state.didDelete ? "Successfully Deleted" : "Is Pending Delete"}</h1>
             </div>
         )
-    }            
+    }
 }
 
 export default DeleteAppointment;

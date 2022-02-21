@@ -43,7 +43,7 @@ class AppointmentForm extends React.Component<IAppointmentPage, State> {
 
   handleCreateSubmit = (event: any) => {//need to make all fields not null
     // console.log(this.state)
-    fetch('https://client-rb-a-point-meant.herokuapp.com/appointment/create', {
+    fetch('https://a-point-meant.herokuapp.com/appointment/create', {
       method: 'POST',
       body: JSON.stringify({
         appointment: {

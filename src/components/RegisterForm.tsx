@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Button, FormGroup, Input, Col, ButtonGroup } from "reactstrap";
 import { IUser } from "../App";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 
@@ -21,7 +21,7 @@ class RegisterForm extends React.Component<RegisterFormProps> {
 
     registerHandleSubmit = () => {
         // const ep = this.props.endPoint || "login";//
-        fetch('https://client-rb-a-point-meant.herokuapp.com/user/register', {
+        fetch('https://a-point-meant.herokuapp.com/user/register', {
             method: "POST",
             body: JSON.stringify({
                 user: {
@@ -66,10 +66,10 @@ class RegisterForm extends React.Component<RegisterFormProps> {
                             value={this.props.password}
                         />
                         <ButtonGroup>
-                        <Button type="submit" onClick={this.registerHandleSubmit}>Register</Button>
-                        <Link to="/login">
-                            <Button type="button">Already registered?</Button>
-                        </Link>
+                            <Button type="submit" onClick={this.registerHandleSubmit}>Register</Button>
+                            <Link to="/login">
+                                <Button type="button">Already registered?</Button>
+                            </Link>
                         </ButtonGroup>
                     </FormGroup>
                 </Col>

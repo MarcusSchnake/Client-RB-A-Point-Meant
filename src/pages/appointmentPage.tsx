@@ -1,6 +1,6 @@
 import React from 'react';
 import AppointmentForm from '../components/appointmentForm';
-import {Button, Form, FormGroup, Input, Container} from 'reactstrap';
+import { Button, Form, FormGroup, Input, Container } from 'reactstrap';
 
 type State = {
     client_name: string,
@@ -8,7 +8,7 @@ type State = {
     phone: string,
     startDateTime: string,
     note: string,
-    
+
 }
 
 interface IUpdateAppointmentProps {
@@ -17,7 +17,7 @@ interface IUpdateAppointmentProps {
     phone: string,
     startDateTime: string,
     note: string,
-    
+
 }
 
 
@@ -39,7 +39,7 @@ class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> 
 
     CreateAppointment = (event: any) => {
         event.preventDefault();
-        fetch('https://client-rb-a-point-meant.herokuapp.com/appointment/create', {
+        fetch('https://a-point-meant.herokuapp.com/appointment/create', {
             method: 'POST',
             body: JSON.stringify({
                 Appointment: {
@@ -48,7 +48,7 @@ class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> 
                     email: this.state.email,
                     startDateTime: this.state.startDateTime,
                     note: this.state.note,
-                   
+
                 },
             }),
             headers: {
@@ -61,9 +61,9 @@ class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> 
             .catch(err => console.log(err));
     };
 
-    GetAppointments = (event:any) => {
+    GetAppointments = (event: any) => {
         const id = event.target.id;
-        fetch(`https://client-rb-a-point-meant.herokuapp.com/appointment/${id}`, {
+        fetch(`https://a-point-meant.herokuapp.com/appointment/${id}`, {
             method: 'GET',
             body: JSON.stringify({
                 appointments: {
@@ -89,16 +89,16 @@ class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> 
         // console.log(window.location.pathname.split('/')[3]);
         return (
             <Container>
-                <AppointmentForm  client_name="" email="" phone="" startDateTime="" note="" 
-                 />
+                <AppointmentForm client_name="" email="" phone="" startDateTime="" note=""
+                />
             </Container>
         );
         return (
             <Container>
-                
+
             </Container>
-                
-            
+
+
         );
     }
 };
