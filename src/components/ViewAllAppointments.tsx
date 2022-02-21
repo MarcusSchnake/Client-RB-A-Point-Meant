@@ -14,7 +14,7 @@ class ViewAllAppointments extends React.Component<{},State> {
         };
     };
     componentDidMount() {
-        fetch('http://localhost:3000/appointment/', {
+        fetch('https://a-point-meant.herokuapp.com/appointment/', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

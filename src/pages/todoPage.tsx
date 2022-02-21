@@ -38,7 +38,7 @@ class CreateTodo extends React.Component<ICreateTodo, State> {
   };
 
   PostTodo = () => {
-    fetch('http://localhost:3000/todo/create', {
+    fetch('https://a-point-meant.herokuapp.com/todo/create', {
       method: 'POST',
       body: JSON.stringify({
         todo_item: {

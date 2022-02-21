@@ -25,7 +25,7 @@ class UpdateAppointment extends React.Component<{}, State> {
     }
     updateAppointment = (event: any) => {
         const id = window.location.pathname.split('/')[3];
-        fetch(`http://localhost:3000/appointment/update/${id}`, {
+        fetch(`https://a-point-meant.herokuapp.com/appointment/update/${id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 appointment: {
@@ -51,7 +51,7 @@ class UpdateAppointment extends React.Component<{}, State> {
 
     componentDidMount() {
         const id = window.location.pathname.split('/')[3];
-        fetch(`http://localhost:3000/appointment/${id}`, {
+        fetch(`https://a-point-meant.herokuapp.com/appointment/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

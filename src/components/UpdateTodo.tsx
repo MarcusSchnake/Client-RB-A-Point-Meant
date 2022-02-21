@@ -22,7 +22,7 @@ class UpdateTodo extends React.Component<{}, State> {
 
     componentDidMount() {
         const id = window.location.pathname.split('/')[3];
-        fetch(`http://localhost:3000/todo/${id}`, {
+        fetch(`https://a-point-meant.herokuapp.com/todo/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ class UpdateTodo extends React.Component<{}, State> {
             todo_item,
         };
         const id = window.location.pathname.split('/')[3];
-        fetch(`http://localhost:3000/todo/${id}`, {
+        fetch(`https://a-point-meant.herokuapp.com/todo/${id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 todo: {

@@ -11,7 +11,7 @@ function ViewAllTodo (){
 
     React.useEffect(() => {
         const id = window.location.pathname.split('/')[3];
-        fetch(`http://localhost:3000/todo/appt/${id}`, {
+        fetch(`https://a-point-meant.herokuapp.com/todo/appt/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

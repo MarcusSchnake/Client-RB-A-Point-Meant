@@ -15,7 +15,7 @@ class DeleteToDo extends React.Component<{}, State> {
     }
     Delete = () => {
         const id = window.location.pathname.split('/')[3];
-        fetch(`http://localhost:3000/todo/${id}`, {
+        fetch(`https://a-point-meant.herokuapp.com/todo/${id}`, {
         method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
