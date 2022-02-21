@@ -5,12 +5,12 @@ import TodoPage from './pages/todoPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ViewAllAppointments from './components/ViewAllAppointments';
-import ViewAllTodo from './components/ViewAllTodo';
-import UpdateTodo from './components/UpdateTodo';
 import UpdateAppointment from './components/UpdateAppointments';
 import DeleteAppointment from './components/DeleteAppointment';
-
-
+import UpdateTodo from './components/UpdateTodo';
+import ViewAllTodo from './components/ViewAllTodo';
+import DeleteToDo from './components/DeleteTodo';
+// import CreateTodo from './components/CreateTodo';
 
 export interface  IUser {
   sessionToken: string;
@@ -86,25 +86,17 @@ function App() {
         )};
         {localStorage.getItem('token') && (
           <>
-          <Route
-            path="/todo"
-            element={<TodoPage subject="" todo_item="" />}
-          />
             <Route
-              path="/todo/create"
-              element={<TodoPage subject="" todo_item="" />}
-            />
-            <Route
-              path="/todo/:id"
+              path="/todo/create/:id"
               element={<TodoPage subject="" todo_item="" />}
             />
             <Route
               path="/todo/delete/:id"
-              element={<TodoPage subject="" todo_item="" />}
+              element={<DeleteToDo />}
             />
             <Route
               path="/todo/update/:id"
-              element={<TodoPage subject="" todo_item="" />}
+              element={<UpdateTodo />}
             />
             <Route 
               path="/todo/getAll/:id"

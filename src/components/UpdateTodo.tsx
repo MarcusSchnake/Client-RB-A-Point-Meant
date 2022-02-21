@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+
 
 
 
@@ -7,25 +7,11 @@ type State = {
     subject: string,
     todo_item: string,
 }
-//  function getProfile(id: string | undefined) {
-    
-//  }
-
-// function IdGrabber() {
-//     console.log(IdGrabber);
-//     const [user, setUser] = React.useState(null);
-//     const {id} = useParams();
-//     React.useEffect(() => {
-//        getProfile(id);}, [id]);
-       
-//        .then(setUser)
-//         .catch ((err: any) => console.log(err));
-// }
 
 
 
 class UpdateTodo extends React.Component<{}, State> {
-    
+
     constructor(props: State) {
         super(props);
         this.state = {
@@ -33,26 +19,27 @@ class UpdateTodo extends React.Component<{}, State> {
             todo_item: '',
         };
     };
-    
+
     componentDidMount() {
-        fetch('http://localhost:3000/todo/appt/:id', {
+        const id = window.location.pathname.split('/')[3];
+        fetch(`http://localhost:3000/todo/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            this.setState({
-                subject: data.subject,
-                todo_item: data.todo_item,
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                this.setState({
+                    subject: data.subject,
+                    todo_item: data.todo_item,
+                })
             })
-        })
-        .catch(err => console.log(err));
-    } 
-    
+            .catch(err => console.log(err));
+    }
+
     handleSubmit = (event: any) => {
         event.preventDefault();
         const { subject, todo_item } = this.state;
@@ -60,7 +47,23 @@ class UpdateTodo extends React.Component<{}, State> {
             subject,
             todo_item,
         };
-        console.log(todo);
+        const id = window.location.pathname.split('/')[3];
+        fetch(`http://localhost:3000/todo/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                todo: {
+                    subject: this.state.subject,
+                    todo_item: this.state.todo_item,
+                },
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        })
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => console.log(err));
     };
 
 
@@ -68,19 +71,19 @@ class UpdateTodo extends React.Component<{}, State> {
         return (
             <div>
                 <h1>Update Todo</h1>
-                
+
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Subject:
-                        <input type='text' value={this.state.subject} onChange={this.handleSubmit} name='subject'/>
+                        <input type='text' value={this.state.subject} onChange={(event: any) => this.setState({ subject: event.target.value })} name='subject' />
                     </label>
-                    <br/>
+                    <br />
                     <label>
                         Todo Item:
-                        <input type='text' value={this.state.todo_item} onChange={this.handleSubmit} name='todo_item'/>
+                        <input type='text' value={this.state.todo_item} onChange={(event: any) => this.setState({ todo_item: event.target.value })} name='todo_item' />
                     </label>
-                    <br/>
-                    <input type='submit' value='Submit'/>
+                    <br />
+                    <input type='submit' value='Submit' />
                 </form>
             </div>
         );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, FormGroup, Input, Button, Container } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import DeleteAppointment from '../components/DeleteAppointment';
 import UpdateAppointments from '../components/UpdateAppointments';
 import ViewAllAppointments from '../components/ViewAllAppointments';
@@ -122,9 +123,11 @@ class AppointmentForm extends React.Component<IAppointmentPage, State> {
             />
           </FormGroup>
           <Button type="submit" >Submit</Button>
-          <Button id="submitUpdate" onclick={UpdateAppointments}>Update</Button>
-          <Button id="deleteButton" >Delete</Button>
-          <Button id="getAppointments" onclick={ViewAllAppointments}>Get All</Button>
+          <Link to={`/appointment/getAll`}>
+            <Button>
+              View All Appointments
+            </Button>
+          </Link>
 
         </Form>
       </Container>

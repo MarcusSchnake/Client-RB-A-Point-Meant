@@ -47,6 +47,10 @@ class ViewAllAppointments extends React.Component<{},State> {
                             <p>{appointment.id}</p>
                             <Link to={`/appointment/update/${appointment.id}`}>Edit</Link>
                             <Link to={`/appointment/delete/${appointment.id}`}>Delete</Link>
+                            <Link to={`/todo/getAll/${appointment.id}`}>Get All</Link>
+                            <Link to={`/todo/create/${appointment.id}`}>Create</Link>
+
+
                         </div>
                     )
                 })}

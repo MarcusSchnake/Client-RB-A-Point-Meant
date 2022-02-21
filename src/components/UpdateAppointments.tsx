@@ -1,4 +1,5 @@
 import React from 'react';
+import { Form } from 'reactstrap';
 
 type State = {
     client_name: string,
@@ -22,14 +23,39 @@ class UpdateAppointment extends React.Component<{}, State> {
 
         };
     }
-   updateAppointment = (event: any) => {
-       const id = window.location.pathname;
+    updateAppointment = (event: any) => {
+        const id = window.location.pathname.split('/')[3];
         fetch(`http://localhost:3000/appointment/update/${id}`, {
             method: 'PUT',
+            body: JSON.stringify({
+                appointment: {
+                    client_name: this.state.client_name,
+                    phone: this.state.phone,
+                    email: this.state.email,
+                    startDateTime: this.state.startDateTime,
+                    note: this.state.note,
+                },
+            }),
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('token')}`
-             
+
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(err => console.log(err));
+    }
+
+    componentDidMount() {
+        const id = window.location.pathname.split('/')[3];
+        fetch(`http://localhost:3000/appointment/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('token')}`
             }
         })
             .then(res => res.json())
@@ -37,20 +63,26 @@ class UpdateAppointment extends React.Component<{}, State> {
                 console.log(data);
                 this.setState({
                     client_name: data.client_name,
-                    email: data.email,
                     phone: data.phone,
+                    email: data.email,
                     startDateTime: data.startDateTime,
                     note: data.note,
                 })
-            })
-            .catch(err => console.log(err));
+            }
+            ).catch(err => console.log(err));
+
     }
 
     render() {
         return (
             <div>
                 <h1>Update Appointment</h1>
-                <form>
+                <Form
+                    onSubmit={(event: any) => {
+                        event.preventDefault();
+                        this.updateAppointment(event);
+                    }}>
+
                     <label>Client Name:</label>
                     <input
                         type="text"
@@ -69,7 +101,7 @@ class UpdateAppointment extends React.Component<{}, State> {
                     <input
                         type="text"
                         name="phone"
-                        value={this.state.phone}    
+                        value={this.state.phone}
                         onChange={(event: any) => this.setState({ phone: event.target.value })}
                     />
                     <label>Start Date and Time:</label>
@@ -87,10 +119,10 @@ class UpdateAppointment extends React.Component<{}, State> {
                         onChange={(event: any) => this.setState({ note: event.target.value })}
                     />
                     <button type="submit">Submit</button>
-                </form>
-            </div>
+                </Form>
+            </div >
         )
-    }            
+    }
 }
 
 export default UpdateAppointment;

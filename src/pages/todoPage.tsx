@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, FormGroup, Input, Container, Button, ButtonGroup } from 'reactstrap'
 import { IUser } from '../App';
-import TodoForm from '../components/todoForm';
+
 
 type State = {
   subject: string,
@@ -12,14 +12,14 @@ type Props = {
   updateToken: (e: IUser) => void;
 };
 
-interface IUpdateTodo {
+interface ICreateTodo {
   subject: string,
   todo_item: string,
 }
 
 
-class UpdateTodo extends React.Component<IUpdateTodo, State> {
-  constructor(props: IUpdateTodo) {
+class CreateTodo extends React.Component<ICreateTodo, State> {
+  constructor(props: ICreateTodo) {
     super(props);
     this.state = {
       subject: this.props.subject,
@@ -37,11 +37,12 @@ class UpdateTodo extends React.Component<IUpdateTodo, State> {
     console.log(Todo);
   };
 
-  CreateTodo = () => {
+  PostTodo = () => {
     fetch('http://localhost:3000/todo/create', {
       method: 'POST',
       body: JSON.stringify({
-        Todo: {
+        todo_item: {
+          appointmentId:window.location.pathname.split('/')[3],
           subject: this.state.subject,
           todo_item: this.state.todo_item,
         },
@@ -56,71 +57,15 @@ class UpdateTodo extends React.Component<IUpdateTodo, State> {
       .catch(err => console.log(err));
   };
 
-  UpdateTodo = () => {
-    fetch('http://localhost:3000/todo/create', {
-      method: 'PUT',
-      body: JSON.stringify({
-        Todo: {
-          subject: this.state.subject,
-          todo_item: this.state.todo_item,
-        },
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + localStorage.getItem('token')
-      }
-    })
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(err => console.log(err));
-  };
+  
 
-
-  GetTodo = () => {
-    fetch('http://localhost:3000/todos', {
-      method: 'GET',
-      body: JSON.stringify({
-        Todo: {
-          subject: this.state.subject,
-          todo_item: this.state.todo_item,
-        },
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + localStorage.getItem('token')
-      }
-    })
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(err => console.log(err));
-  };
-
-  DeleteTodo = () => {
-    fetch('http://localhost:3000/todos', {
-      method: 'DELETE',
-      body: JSON.stringify({
-        Todo: {
-          subject: this.state.subject,
-          todo_item: this.state.todo_item,
-        },
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + localStorage.getItem('token')
-      }
-    })
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(err => console.log(err));
-  };
+  
 
 
 
   render() {
     return (
       <div>
-
-        <TodoForm subject="" todo_item="" />
         <Form onSubmit={(e) => {
           e.preventDefault();
         }}>
@@ -145,9 +90,8 @@ class UpdateTodo extends React.Component<IUpdateTodo, State> {
                 />
                 <ButtonGroup>
 
-                  <Button onClick={this.CreateTodo} type="submit">Create Todo</Button>
-                  <Button onClick={this.GetTodo} type="submit">Get Todo's</Button>
-                  <Button onClick={this.UpdateTodo} type="submit">Update</Button>
+                  <Button color="primary" onClick={this.PostTodo}>Create</Button>
+                  
                 </ButtonGroup>
 
               </FormGroup>
@@ -163,4 +107,4 @@ class UpdateTodo extends React.Component<IUpdateTodo, State> {
 
 
 
-export default UpdateTodo;
+export default CreateTodo;
