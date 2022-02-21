@@ -15,7 +15,7 @@ class DeleteAppointment extends React.Component<{}, State> {
     }
     Delete = () => {
         const id = window.location.pathname.split('/')[3];
-        fetch(`http://localhost:3000/appointment/delete/${id}`, {
+        fetch(`https://client-rb-a-point-meant.herokuapp.com/appointment/delete/${id}`, {
         method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

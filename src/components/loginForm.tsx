@@ -26,7 +26,7 @@ class LoginForm extends React.Component<LoginFormProps, State> {
   //create handle submit for login and then register with endpoints****
   loginHandleSubmit = () => {
     console.log(this.props.email, this.props.password);
-    fetch(`http://localhost:3000/user/login`, {
+    fetch(`https://client-rb-a-point-meant.herokuapp.com/user/login`, {
       method: "POST",
       body: JSON.stringify({
         user: {

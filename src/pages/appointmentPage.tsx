@@ -35,21 +35,11 @@ class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> 
     };
 
 
-//    handleSubmit = (event: any) => {
-//         event.preventDefault();
-//         const { client_name, phone, startDateTime, note } = this.state;
-//         const appointment = {
-//             client_name,
-//             phone,
-//             startDateTime,
-//             note,
-//         };
-//         console.log(appointment);
-//     };
+
 
     CreateAppointment = (event: any) => {
         event.preventDefault();
-        fetch('http://localhost:3000/appointment/create', {
+        fetch('https://client-rb-a-point-meant.herokuapp.com/appointment/create', {
             method: 'POST',
             body: JSON.stringify({
                 Appointment: {
@@ -70,36 +60,10 @@ class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> 
             .then(data => console.log(data))
             .catch(err => console.log(err));
     };
-   
-
-    // UpdateAppointments = (event: any) => {
-    //     const id = event.target.id;
-    //     fetch(`http://localhost:3000/appointment/${id}`, {
-    //         method: 'PUT',
-    //         body: JSON.stringify({
-    //             Appointment: {
-    //                 client_name: this.state.client_name,
-    //                 email: this.state.email,
-    //                 phone: this.state.phone,
-    //                 startDateTime: this.state.startDateTime,
-    //                 note: this.state.note,
-    //                 // id: this.state.id,
-    //             },
-    //         }),
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             Authorization: 'Bearer ' + localStorage.getItem('token')
-    //         }
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => console.log(data))
-    //         .catch(err => console.log(err));
-    // };
-
 
     GetAppointments = (event:any) => {
         const id = event.target.id;
-        fetch(`http://localhost:3000/appointment/${id}`, {
+        fetch(`https://client-rb-a-point-meant.herokuapp.com/appointment/${id}`, {
             method: 'GET',
             body: JSON.stringify({
                 appointments: {
@@ -120,31 +84,6 @@ class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> 
                 console.log(data);
             });
     };
-
-    // DeleteAppointments = (event: any) => {
-    //     const id = event.target.id;
-    //     fetch(`http://localhost:3000/appointment/${id}`, {
-    //         method: 'DELETE',
-    //         body: JSON.stringify({
-    //             appointments: {
-    //                 client_name: this.state.client_name,
-    //                 email: this.state.email,
-    //                 phone: this.state.phone,
-    //                 startDateTime: this.state.startDateTime,
-    //                 note: this.state.note,
-    //             },
-    //         }),
-    //         headers: new Headers({
-    //             'Content-Type': 'application/json',
-    //             Authorization: `Bearer ${localStorage.getItem('token')}`,
-    //         }),
-    //     })
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             console.log(data);
-    //         });
-    // };
-
 
     render() {
         // console.log(window.location.pathname.split('/')[3]);

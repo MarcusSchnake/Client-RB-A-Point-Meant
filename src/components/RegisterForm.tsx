@@ -21,7 +21,7 @@ class RegisterForm extends React.Component<RegisterFormProps> {
 
     registerHandleSubmit = () => {
         // const ep = this.props.endPoint || "login";//
-        fetch('http://localhost:3000/user/register', {
+        fetch('https://client-rb-a-point-meant.herokuapp.com/user/register', {
             method: "POST",
             body: JSON.stringify({
                 user: {
