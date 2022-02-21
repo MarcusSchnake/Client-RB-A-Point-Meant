@@ -23,17 +23,6 @@ export default function NavBar() {
                         )}
                     </NavLink>
                 </NavItem>
-                  
-                <NavItem>
-                    <NavLink href="http://localhost:3001/register">
-                        Appointment
-                    </NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink href="http://localhost:3001/todo">
-                        Todo's
-                    </NavLink>
-                </NavItem>
             </Nav>
         </div>
     );
