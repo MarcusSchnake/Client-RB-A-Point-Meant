@@ -1,9 +1,7 @@
 import React from 'react';
 import { Form, FormGroup, Input, Button, Container } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import DeleteAppointment from '../components/DeleteAppointment';
-import UpdateAppointments from '../components/UpdateAppointments';
-import ViewAllAppointments from '../components/ViewAllAppointments';
+
 
 
 
@@ -13,6 +11,7 @@ type State = {
   phone: string,
   startDateTime: string,//2022-03-03 05:30:00 formate
   note: string,
+  didCreate:boolean,
 
 }
 
@@ -36,12 +35,13 @@ class AppointmentForm extends React.Component<IAppointmentPage, State> {
       phone: this.props.phone,
       startDateTime: this.props.startDateTime,
       note: this.props.note,
+        didCreate:false,
 
     }
   };
 
 
-  handleCreateSubmit = (event: any) => {//need to make all fields not null
+  handleCreateSubmit = () => {//need to make all fields not null
     // console.log(this.state)
     fetch('https://a-point-meant.herokuapp.com/appointment/create', {
       method: 'POST',
@@ -63,7 +63,7 @@ class AppointmentForm extends React.Component<IAppointmentPage, State> {
 
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        this.setState({didCreate:true})
       }
       )
       .catch(err => console.log(err));
@@ -76,10 +76,12 @@ class AppointmentForm extends React.Component<IAppointmentPage, State> {
     return (
       <Container md="12">
         <h1>Appointment Page</h1>
+        <div>{this.state.didCreate ? "Successfully Scheduled" : ""} 
+        </div>
         <Form
           onSubmit={(event) => {
             event.preventDefault();
-            this.handleCreateSubmit(event);
+            this.handleCreateSubmit();
           }}
         >
           <FormGroup>
@@ -128,7 +130,6 @@ class AppointmentForm extends React.Component<IAppointmentPage, State> {
               View All Appointments
             </Button>
           </Link>
-
         </Form>
       </Container>
 

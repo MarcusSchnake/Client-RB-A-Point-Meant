@@ -1,0 +1,29 @@
+
+
+Button {
+    Background-color:blue !important;
+    padding: 10px,10px,10px,10px;
+
+
+}
+
+h1{
+    color: blue;
+    background-color: azure!important;
+    border: 5px !important;
+    padding: 10px;
+}
+
+Link{
+    background-color: azure !important;
+}
+
+Input{
+border-color: blue !important;
+
+}
+
+#NavBar{
+    padding-top: 10px;
+}
+

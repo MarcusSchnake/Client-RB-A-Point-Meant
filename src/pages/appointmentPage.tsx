@@ -1,6 +1,6 @@
 import React from 'react';
 import AppointmentForm from '../components/appointmentForm';
-import { Button, Form, FormGroup, Input, Container } from 'reactstrap';
+import { Container } from 'reactstrap';
 
 type State = {
     client_name: string,
@@ -71,7 +71,6 @@ class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> 
                     phone: this.state.phone,
                     startDateTime: this.state.startDateTime,
                     note: this.state.note,
-                    // id: this.state.id,
                 },
             }),
             headers: new Headers({
@@ -86,19 +85,12 @@ class UpdateAppointment extends React.Component<IUpdateAppointmentProps, State> 
     };
 
     render() {
-        // console.log(window.location.pathname.split('/')[3]);
+
         return (
             <Container>
                 <AppointmentForm client_name="" email="" phone="" startDateTime="" note=""
                 />
             </Container>
-        );
-        return (
-            <Container>
-
-            </Container>
-
-
         );
     }
 };

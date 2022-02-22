@@ -92,6 +92,4 @@ class UpdateTodo extends React.Component<{}, State> {
 
 export default UpdateTodo;
 
-// function then(setUser: React.Dispatch<React.SetStateAction<string>>) {
-//         throw new Error('Function not implemented.');
-//     }
+

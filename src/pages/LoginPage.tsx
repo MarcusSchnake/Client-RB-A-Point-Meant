@@ -1,5 +1,4 @@
 import React from 'react';
-import { IUser } from '../App';
 import Auth from '../components/Auth';
 
 

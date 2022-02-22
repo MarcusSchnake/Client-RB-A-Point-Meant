@@ -104,7 +104,7 @@ class UpdateAppointment extends React.Component<{}, State> {
                         value={this.state.phone}
                         onChange={(event: any) => this.setState({ phone: event.target.value })}
                     />
-                    <label>Start Date and Time:</label>
+                    <label> Date and Time (yyyy-mm-dd hour:min:sec):</label>
                     <input
                         type="text"
                         name="startDateTime"

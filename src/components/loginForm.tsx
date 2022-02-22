@@ -23,7 +23,7 @@ class LoginForm extends React.Component<LoginFormProps, State> {
   constructor(props: LoginFormProps) {
     super(props);
   }
-  //create handle submit for login and then register with endpoints****
+  
   loginHandleSubmit = () => {
     console.log(this.props.email, this.props.password);
     fetch(`https://a-point-meant.herokuapp.com/user/login`, {
@@ -46,12 +46,6 @@ class LoginForm extends React.Component<LoginFormProps, State> {
 
       });
   };
-
-  // Logout = () => {
-  //   localStorage.clear();
-  //   window.location.replace("/");
-
-  // }
 
   render() {
     console.log(this.props)
