@@ -1,4 +1,6 @@
 import React from 'react';
+import { Container, Button } from 'reactstrap';
+
 
 type State = {
     didDelete: boolean,
@@ -37,10 +39,12 @@ class DeleteToDo extends React.Component<{}, State> {
     }
     render() {
         return (
-            <div>
-                <h1>Todo {this.state.didDelete ? "Successfully Deleted" : "Is Pending Delete" }</h1>
-
-            </div>
+            <Container>
+                    <ul>
+                        <h1>Todo {this.state.didDelete ? "Successfully Deleted" : "Is Pending Delete" }</h1>
+                    </ul>
+                <Button onClick={() => window.history.back()}>Go Back</Button>
+            </Container>
         )
     }            
 }

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Form } from 'reactstrap';
+import { FormGroup, Form, Button } from 'reactstrap';
+
 
 type State = {
     client_name: string,
@@ -75,7 +76,7 @@ class UpdateAppointment extends React.Component<{}, State> {
 
     render() {
         return (
-            <div>
+            <FormGroup>
                 <h1>Update Appointment</h1>
                 <Form
                     onSubmit={(event: any) => {
@@ -104,7 +105,7 @@ class UpdateAppointment extends React.Component<{}, State> {
                         value={this.state.phone}
                         onChange={(event: any) => this.setState({ phone: event.target.value })}
                     />
-                    <label> Date and Time (yyyy-mm-dd hour:min:sec):</label>
+                    <label> Date and Time (yyyy-mm-dd hh:mm:ss):</label>
                     <input
                         type="text"
                         name="startDateTime"
@@ -118,9 +119,11 @@ class UpdateAppointment extends React.Component<{}, State> {
                         value={this.state.note}
                         onChange={(event: any) => this.setState({ note: event.target.value })}
                     />
-                    <button type="submit">Submit</button>
                 </Form>
-            </div >
+                    <Button type="submit">Submit</Button>
+                    <Button onClick={() => window.history.back()}>Go Back</Button>
+
+            </FormGroup>
         )
     }
 }

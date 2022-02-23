@@ -1,9 +1,10 @@
 html {
-  background-image:url();
+  background-image:url(https://img.freepik.com/free-photo/colour-smoke-background_71163-197.jpg?w=826);
   background-repeat:no-repeat;
   background-size:cover;
   overflow-wrap:normal;
 }
+
 
 body {
   background: transparent !important;

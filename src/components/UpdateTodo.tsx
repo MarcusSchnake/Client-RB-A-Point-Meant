@@ -1,4 +1,6 @@
 import React from 'react';
+import { Form, Button } from 'reactstrap';
+// import {UseHistory} from 'react-router-dom';
 
 
 
@@ -6,6 +8,7 @@ import React from 'react';
 type State = {
     subject: string,
     todo_item: string,
+    didUpdate: boolean,
 }
 
 
@@ -17,6 +20,7 @@ class UpdateTodo extends React.Component<{}, State> {
         this.state = {
             subject: '',
             todo_item: '',
+            didUpdate: false,
         };
     };
 
@@ -35,6 +39,7 @@ class UpdateTodo extends React.Component<{}, State> {
                 this.setState({
                     subject: data.subject,
                     todo_item: data.todo_item,
+                    didUpdate: true,
                 })
             })
             .catch(err => console.log(err));
@@ -63,6 +68,7 @@ class UpdateTodo extends React.Component<{}, State> {
         })
             .then(res => res.json())
             .then(data => console.log(data))
+
             .catch(err => console.log(err));
     };
 
@@ -70,7 +76,7 @@ class UpdateTodo extends React.Component<{}, State> {
     render() {
         return (
             <div>
-                <h1>Update Todo</h1>
+                <h1>Update Todo {this.state.didUpdate ?  "Successfully Updated" : "Is Pending Update" }</h1>
 
                 <form onSubmit={this.handleSubmit}>
                     <label>
@@ -83,7 +89,10 @@ class UpdateTodo extends React.Component<{}, State> {
                         <input type='text' value={this.state.todo_item} onChange={(event: any) => this.setState({ todo_item: event.target.value })} name='todo_item' />
                     </label>
                     <br />
-                    <input type='submit' value='Submit' />
+                    <Button onclick='submit'>Submit</Button>
+
+                    {/* <input type='submit' value='Submit' /> */}
+                   <Button onClick={() => window.history.back()}>Go Back</Button>
                 </form>
             </div>
         );

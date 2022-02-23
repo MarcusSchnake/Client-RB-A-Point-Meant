@@ -13,6 +13,7 @@ type State = {
   note: string,
   didCreate:boolean,
 
+
 }
 
 interface IAppointmentPage {
@@ -22,6 +23,7 @@ interface IAppointmentPage {
   phone: string,
   startDateTime: string,
   note: string,
+  
 
 }
 
@@ -75,9 +77,8 @@ class AppointmentForm extends React.Component<IAppointmentPage, State> {
   render() {
     return (
       <Container md="12">
-        <h1>Appointment Page</h1>
-        <div>{this.state.didCreate ? "Successfully Scheduled" : ""} 
-        </div>
+        <h1>Appointment Page {this.state.didCreate ? "Successfully Scheduled" : ""} 
+        </h1>
         <Form
           onSubmit={(event) => {
             event.preventDefault();
@@ -85,6 +86,7 @@ class AppointmentForm extends React.Component<IAppointmentPage, State> {
           }}
         >
           <FormGroup>
+            <label>Name</label>
             <Input
               type="text"
               placeholder="Client Name"
@@ -93,6 +95,7 @@ class AppointmentForm extends React.Component<IAppointmentPage, State> {
             />
           </FormGroup>
           <FormGroup>
+            <label>Phone</label>
             <Input
               type="text"
               placeholder="Phone Number"
@@ -101,6 +104,7 @@ class AppointmentForm extends React.Component<IAppointmentPage, State> {
             />
           </FormGroup>
           <FormGroup>
+            <label>Email</label>
             <Input
               type="text"
               placeholder="Email"
@@ -109,14 +113,16 @@ class AppointmentForm extends React.Component<IAppointmentPage, State> {
             />
           </FormGroup>
           <FormGroup>
+          <label> Date and Time (yyyy-mm-dd hh:mm:ss):</label>
             <Input
               type="text"
-              placeholder="Start Date and Time"
+              placeholder="Start Date and Time "
               onChange={(e) => this.setState({ startDateTime: e.target.value })}
               value={this.state.startDateTime}
             />
           </FormGroup>
           <FormGroup >
+            <label>Note</label>
             <Input
               type="text"
               placeholder="Note"
@@ -130,6 +136,7 @@ class AppointmentForm extends React.Component<IAppointmentPage, State> {
               View All Appointments
             </Button>
           </Link>
+            <Button onClick={() => window.history.back()}>Go Back</Button>
         </Form>
       </Container>
 

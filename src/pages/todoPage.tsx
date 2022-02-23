@@ -6,6 +6,7 @@ import { IUser } from '../App';
 type State = {
   subject: string,
   todo_item: string,
+  didCreateTodo: boolean,
 }
 
 type Props = {
@@ -15,6 +16,7 @@ type Props = {
 interface ICreateTodo {
   subject: string,
   todo_item: string,
+  
 }
 
 
@@ -24,6 +26,7 @@ class CreateTodo extends React.Component<ICreateTodo, State> {
     this.state = {
       subject: this.props.subject,
       todo_item: this.props.todo_item,
+      didCreateTodo: false,
     };
   };
 
@@ -42,9 +45,10 @@ class CreateTodo extends React.Component<ICreateTodo, State> {
       method: 'POST',
       body: JSON.stringify({
         todo_item: {
-          appointmentId:window.location.pathname.split('/')[3],
+          appointmentId: window.location.pathname.split('/')[3],
           subject: this.state.subject,
           todo_item: this.state.todo_item,
+
         },
       }),
       headers: {
@@ -53,13 +57,20 @@ class CreateTodo extends React.Component<ICreateTodo, State> {
       }
     })
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => {
+        console.log();
+        this.setState({
+          didCreateTodo: true,
+        })
+      })
+
       .catch(err => console.log(err));
+
   };
 
-  
 
-  
+
+
 
 
 
@@ -71,35 +82,37 @@ class CreateTodo extends React.Component<ICreateTodo, State> {
         }}>
           <FormGroup>
             <Container md="6">
-              <h1>Todo's</h1>
+              <h1>Todo's {this.state.didCreateTodo ? "Successfully Created" : "Is Pending Creation"}</h1>
 
-              <FormGroup md="6">
-                <Input
-                  type="text"
-                  placeholder="Subject"
-                  onChange={(e) => this.setState({ subject: e.target.value })}
-                  value={this.state.subject}
-                />
-              </FormGroup >
-              <FormGroup md="6">
-                <Input
-                  type="text"
-                  placeholder="Todo Item"
-                  onChange={(e) => this.setState({ todo_item: e.target.value })}
-                  value={this.state.todo_item}
-                />
-                <ButtonGroup>
+            <FormGroup md="6">
+              <Input
+                type="text"
+                placeholder="Subject"
+                onChange={(e) => this.setState({ subject: e.target.value })}
+                value={this.state.subject}
+              />
+            </FormGroup >
+            <FormGroup md="6">
+              <Input
+                type="text"
+                placeholder="Todo Item"
+                onChange={(e) => this.setState({ todo_item: e.target.value })}
+                value={this.state.todo_item}
+              />
+              <ButtonGroup>
 
-                  <Button color="primary" onClick={this.PostTodo}>Create</Button>
-                  
-                </ButtonGroup>
+                <Button color="primary" onClick={this.PostTodo}>Create</Button>
+                <Button onClick={() => window.history.back()}>Go Back</Button>
 
-              </FormGroup>
+
+              </ButtonGroup>
+
+            </FormGroup>
             </Container>
           </FormGroup>
 
         </Form>
-      </div>
+      </div >
     );
   }
 };
