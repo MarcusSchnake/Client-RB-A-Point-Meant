@@ -11,6 +11,7 @@ import UpdateTodo from './components/UpdateTodo';
 import ViewAllTodo from './components/ViewAllTodo';
 import DeleteToDo from './components/DeleteTodo';
 import "./App.css"
+import LandingPage from './components/LandingPage';
 
 
 export interface  IUser {
@@ -29,6 +30,7 @@ function App() {
 
     <Router >
       <Navbar />
+      <LandingPage />
       <Routes>
         <Route
           path="/login"
